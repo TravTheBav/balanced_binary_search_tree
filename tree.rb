@@ -21,4 +21,24 @@ class Tree
 
     root_node
   end
+
+  def insert(value)
+    node = Node.new(value)
+    current_node = root
+    until current_node.leaf?
+      result = node <=> current_node
+      case result
+      when -1
+        current_node = current_node.left_child
+      else
+        current_node = current_node.right_child
+      end
+    end
+    if (node <=> current_node) == -1
+      current_node.left_child = node
+    else
+      current_node.right_child = node
+    end
+  end
+
 end

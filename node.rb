@@ -18,4 +18,8 @@ class Node
   def inspect
     value.to_s
   end
+
+  def leaf?
+    left_child.nil? && right_child.nil?
+  end
 end
