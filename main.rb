@@ -1,8 +1,14 @@
-require_relative 'node'
+require_relative 'tree'
 
-node_1 = Node.new(1)
-node_2 = Node.new(2)
-node_3 = Node.new(2)
-p node_1 <=> node_2
-p node_2 <=> node_1
-p node_2 <=> node_3
+arr = [1, 2, 3, 4, 5, 6, 7]
+
+bst = Tree.new(arr)
+p bst.root
+
+p bst.root.left_child
+p bst.root.left_child.left_child
+p bst.root.left_child.right_child
+
+p bst.root.right_child
+p bst.root.right_child.left_child
+p bst.root.right_child.right_child
