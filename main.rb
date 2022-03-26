@@ -1,10 +1,14 @@
 require_relative 'tree'
 
-arr = [1, 2, 3]
+arr = [20, 30, 40, 50, 60, 70, 80]
 
 bst = Tree.new(arr)
-p bst.root
-bst.insert(4)
 
-p bst.root.right_child.left_child
-p bst.root.right_child.right_child
+bst.build_tree(arr)
+bst.insert(bst.root, 32)
+
+root = bst.root.left_child.right_child
+p root.left_child
+
+bst.insert(bst.root, 34)
+p root.left_child.right_child

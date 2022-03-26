@@ -22,22 +22,21 @@ class Tree
     root_node
   end
 
-  def insert(value)
-    node = Node.new(value)
-    current_node = root
-    until current_node.leaf?
-      result = node <=> current_node
-      case result
-      when -1
-        current_node = current_node.left_child
+  # inserts a new node with value to the correct leaf node
+  def insert(root, value)
+    case root <=> value
+    when 1
+      if root.left_child.nil?
+        root.left_child = Node.new(value)
       else
-        current_node = current_node.right_child
+        insert(root.left_child, value)
       end
-    end
-    if (node <=> current_node) == -1
-      current_node.left_child = node
     else
-      current_node.right_child = node
+      if root.right_child.nil?
+        root.right_child = Node.new(value)
+      else
+        insert(root.right_child, value)
+      end
     end
   end
 

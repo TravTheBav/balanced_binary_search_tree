@@ -11,15 +11,11 @@ class Node
     @right_child = nil
   end
 
-  def <=>(other_node)
-    value <=> other_node.value
+  def <=>(other)
+    value <=> other
   end
 
   def inspect
     value.to_s
-  end
-
-  def leaf?
-    left_child.nil? && right_child.nil?
   end
 end
