@@ -6,9 +6,9 @@ bst = Tree.new(arr)
 
 bst.build_tree(arr)
 bst.insert(bst.root, 32)
+bst.pretty_print
 
-root = bst.root.left_child.right_child
-p root.left_child
-
-bst.insert(bst.root, 34)
-p root.left_child.right_child
+p bst.root.parent
+p bst.root.left_child.parent
+p bst.root.left_child.right_child.parent
+p bst.root.right_child.right_child.parent
