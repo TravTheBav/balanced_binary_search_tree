@@ -2,8 +2,7 @@
 
 class Node
   include Comparable
-  attr_accessor :left_child, :right_child, :parent
-  attr_reader :value
+  attr_accessor :value, :parent, :left_child, :right_child
 
   def initialize(value, parent = nil)
     @value = value
@@ -25,6 +24,6 @@ class Node
   end
 
   def one_child?
-    [left_child, right_child].one? { |child| child.nil? }
+    [left_child, right_child].one?(&:nil?)
   end
 end

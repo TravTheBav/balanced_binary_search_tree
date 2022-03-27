@@ -3,12 +3,11 @@ require_relative 'tree'
 arr = [20, 30, 40, 50, 60, 70, 80]
 
 bst = Tree.new(arr)
-
-bst.build_tree(arr)
-bst.insert(bst.root, 32)
+node = bst.root.left_child.right_child
+bst.insert(node, 32)
+bst.insert(node.left_child, 34)
+bst.insert(node.left_child.right_child, 36)
 bst.pretty_print
-
-p bst.root.parent
-p bst.root.left_child.parent
-p bst.root.left_child.right_child.parent
-p bst.root.right_child.right_child.parent
+puts
+bst.delete(bst.root, 30)
+bst.pretty_print
