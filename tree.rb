@@ -120,6 +120,7 @@ class Tree
     end
   end
 
+  # breadth first traversal using iteration
   def level_order
     arr = []
     queue = [root]
@@ -136,6 +137,7 @@ class Tree
     return arr unless block_given?
   end
 
+  # checks left-subtree, root, right-subtree
   def inorder(node)
     return node if node.leaf?
 
@@ -148,6 +150,7 @@ class Tree
     end
   end
 
+  # checks root, left-subtree, right-subtree
   def preorder(node)
     return node if node.leaf?
 
@@ -160,6 +163,7 @@ class Tree
     end
   end
 
+  # checks left-subtree, right-subtree, root
   def postorder(node)
     return node if node.leaf?
 
@@ -170,5 +174,14 @@ class Tree
     else
       [postorder(node.left_child), postorder(node.right_child), node].flatten
     end
+  end
+
+  def height(node)
+    return -1 if node.nil?
+    return 0 if node.leaf?
+
+    left_subtree = 1 + height(node.left_child)
+    right_subtree = 1 + height(node.right_child)
+    [left_subtree, right_subtree].max
   end
 end
