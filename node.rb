@@ -16,7 +16,7 @@ class Node
   end
 
   def inspect
-    "value: #{value}"
+    value.to_s
   end
 
   def leaf?

@@ -1,5 +1,6 @@
 # a class representing a balanced binary search tree
 require_relative 'node'
+require 'pry-byebug'
 
 class Tree
   attr_reader :root
@@ -133,5 +134,41 @@ class Tree
     end
 
     return arr unless block_given?
+  end
+
+  def inorder(node)
+    return node if node.leaf?
+
+    if block_given?
+      inorder(node.left_child).each { |ele| yield(ele) }
+      yield(node)
+      inorder(node.right_child).each { |ele| yield(ele) }
+    else
+      [inorder(node.left_child), node, inorder(node.right_child)].flatten
+    end
+  end
+
+  def preorder(node)
+    return node if node.leaf?
+
+    if block_given?
+      yield(node)
+      preorder(node.left_child).each { |ele| yield(ele) }
+      preorder(node.right_child).each { |ele| yield(ele) }
+    else
+      [node, preorder(node.left_child), preorder(node.right_child)].flatten
+    end
+  end
+
+  def postorder(node)
+    return node if node.leaf?
+
+    if block_given?
+      postorder(node.left_child).each { |ele| yield(ele) }
+      postorder(node.right_child).each { |ele| yield(ele) }
+      yield(node)
+    else
+      [postorder(node.left_child), postorder(node.right_child), node].flatten
+    end
   end
 end
