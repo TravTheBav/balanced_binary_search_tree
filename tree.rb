@@ -104,4 +104,34 @@ class Tree
 
     delete_multi_child_node(node.left_child)
   end
+
+  # finds and returns the node which contains the given value
+  def find(node, value)
+    return nil if node.nil?
+
+    case node <=> value
+    when 0
+      node
+    when 1
+      find(node.left_child, value)
+    else
+      find(node.right_child, value)
+    end
+  end
+
+  def level_order
+    arr = []
+    queue = [root]
+    until queue.empty?
+      current_node = queue.shift
+
+      queue << current_node.left_child if current_node.left_child
+      queue << current_node.right_child if current_node.right_child
+
+      yield(current_node) if block_given?
+      arr << current_node.value
+    end
+
+    return arr unless block_given?
+  end
 end
