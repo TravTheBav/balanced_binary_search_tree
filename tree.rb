@@ -139,6 +139,7 @@ class Tree
 
   # checks left-subtree, root, right-subtree
   def inorder(node)
+    return [] if node.nil?
     return node if node.leaf?
 
     if block_given?
@@ -152,6 +153,7 @@ class Tree
 
   # checks root, left-subtree, right-subtree
   def preorder(node)
+    return [] if node.nil?
     return node if node.leaf?
 
     if block_given?
@@ -165,6 +167,7 @@ class Tree
 
   # checks left-subtree, right-subtree, root
   def postorder(node)
+    return [] if node.nil?
     return node if node.leaf?
 
     if block_given?
@@ -195,5 +198,23 @@ class Tree
       current_depth += 1
     end
     current_depth
+  end
+
+  # tree is balanced if difference between height of left subtree
+  # and height of right subtree of every node is not greater than 1
+  def balanced?
+    level_order do |node|
+      distance = (height(node.left_child) - height(node.right_child)).abs
+      return false if distance > 1
+    end
+    true
+  end
+
+  def rebalance
+    return if balanced? # doesn't do anything if already balanced
+
+    arr = []
+    inorder(@root) { |node| arr << node.value }
+    @root = build_tree(arr)
   end
 end

@@ -4,8 +4,13 @@ arr = [20, 30, 40, 50, 60, 70, 80]
 
 bst = Tree.new(arr)
 bst.insert(bst.root, 25)
+bst.insert(bst.root, 27)
+bst.insert(bst.root, 28)
 bst.pretty_print
+p bst.balanced?
 
-node = bst.find(bst.root, 30)
-p bst.depth(node)
-p bst.height(node)
+3.times { puts }
+
+bst.rebalance
+bst.pretty_print
+p bst.balanced?
