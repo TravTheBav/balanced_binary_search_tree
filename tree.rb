@@ -176,6 +176,7 @@ class Tree
     end
   end
 
+  # height here is defined as number of edges in longest path from given node to leaf node
   def height(node)
     return -1 if node.nil?
     return 0 if node.leaf?
@@ -183,5 +184,16 @@ class Tree
     left_subtree = 1 + height(node.left_child)
     right_subtree = 1 + height(node.right_child)
     [left_subtree, right_subtree].max
+  end
+
+  # depth here is defined as number of edges in path from given node to the tree's root node
+  def depth(node)
+    parent = node.parent
+    current_depth = 0
+    until parent.nil?
+      parent = parent.parent
+      current_depth += 1
+    end
+    current_depth
   end
 end
