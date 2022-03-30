@@ -1,6 +1,5 @@
 # a class representing a balanced binary search tree
 require_relative 'node'
-require 'pry-byebug'
 
 class Tree
   attr_reader :root

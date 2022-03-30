@@ -1,4 +1,4 @@
-# a class representing a node for the bst
+# a class representing a node for the binary search tree
 
 class Node
   include Comparable
